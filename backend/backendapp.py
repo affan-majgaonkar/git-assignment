@@ -21,6 +21,15 @@ def submit():
     except Exception as e:
         return jsonify({"error": str(e)})
 
+@app.route('/submittodoitem', methods=['POST'])
+def submit():
+    try:
+        form_data = dict(request.json)
+        collection.insert_one(form_data)
+        return jsonify({"message": "Data submitted successfully!"})
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
 @app.route('/view', methods=['GET'])
 def view():
 
